@@ -1,0 +1,31 @@
+{
+  "name": "react-graphql-aston",
+  "version": "1.0.0",
+  "description": "learning react with graphQL and paolo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "json:server": "json-server --watch db.json",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guy88a/react-graphql-aston.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guy88a/react-graphql-aston/issues"
+  },
+  "homepage": "https://github.com/guy88a/react-graphql-aston#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "graphql": "^0.12.3",
+    "json-server": "^0.12.1",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.14.6",
+    "save": "^2.3.2"
+  }
+}

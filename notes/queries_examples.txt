@@ -1,0 +1,25 @@
+{
+  apple: company(id: "1") {
+    ...companyDetails
+  }
+  
+  ebay: company(id: "5") {
+    ...companyDetails
+  }
+  
+  udemy: company(id: "4") {
+    ...companyDetails
+  }
+  
+  company(id: "2") {
+    ...companyDetails
+  }
+}
+
+fragment companyDetails on Company {
+  name
+  description
+  users{
+    firstName
+  }
+}

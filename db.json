@@ -9,5 +9,13 @@
         { "id": "29", "firstName": "Christina", "age": 30 },
         { "id": "30", "firstName": "Avi", "age": 25 },
         { "id": "40", "firstName": "Alex", "age": 40 }
+    ],
+
+    "companies": [
+        { "id": "1", "name": "Apple", "description": "phones and tablets" },
+        { "id": "2", "name": "Google", "description": "search engine and more" },
+        { "id": "3", "name": "Amazon", "description": "online shopping" },
+        { "id": "4", "name": "Udemy", "description": "online learning" },
+        { "id": "5", "name": "eBay", "description": "online shopping" }
     ]
 }

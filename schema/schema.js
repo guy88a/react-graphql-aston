@@ -8,7 +8,8 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLSchema,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull
 } = graphql;
 
 //COMPANY
@@ -27,6 +28,7 @@ const CompanyType = new GraphQLObjectType({
         }
     })
 });
+
 //USER
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -43,6 +45,7 @@ const UserType = new GraphQLObjectType({
         }
     })
 });
+
 //ROOT
 const RootQueryType = new GraphQLObjectType({
     name: 'RootQuery' ,
@@ -66,7 +69,47 @@ const RootQueryType = new GraphQLObjectType({
     }
 });
 
+//MUTATION
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addUser: {
+            type: UserType,
+            args: {
+                firstName: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) },
+                companyId: { type: GraphQLString }
+            },
+            resolve(parentValue, { firstName, age }/*args destracture*/) {
+                return axios.post(`http://localhost:3000/users`, { firstName, age })
+                .then(resp => resp.data);
+            }
+        },
+        deleteUser: {
+            type: UserType,
+            args: { id: { type: new GraphQLNonNull(GraphQLString) } },
+            resolve(parentValue, { id }) {
+                return axios.delete(`http://localhost:3000/users/${id}`)
+                .then(resp => resp.data);
+            }
+        },
+        editUser: {
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) },
+                firstName: { type: GraphQLString },
+                companyId: { type: GraphQLString }
+            },
+            resolve(parentValue, { id, firstName, companyId }) {
+                return axios.patch(`http://localhost:3000/users/${id}`, { firstName, companyId })
+                .then(resp => resp.data);
+            }
+        }
+    }
+});
+
 // Export ==================================================== //
 module.exports = new GraphQLSchema({
-    query: RootQueryType
+    query: RootQueryType,
+    mutation: Mutation
 });
